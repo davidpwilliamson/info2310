@@ -1,4 +1,6 @@
 class Micropost < ActiveRecord::Base
+  belongs_to :user
+
   attr_accessible :content, :user_id
   
   validates :user_id, presence: true

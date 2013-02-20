@@ -10,6 +10,12 @@
   <%= @user.email %>
 </p>
 
+<p>
+	<%= pluralize(@user.microposts.length, "Micropost") %>
+</p>
+
+<%= render @user.microposts %>
+
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
