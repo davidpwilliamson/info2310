@@ -1,4 +1,6 @@
 class MicropostsController < ApplicationController
+
+  before_filter :redirect_unless_authorized, only: [:edit, :update, :destroy]
   # GET /microposts
   # GET /microposts.json
   def index
@@ -80,4 +82,14 @@ class MicropostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  private
+	def redirect_unless_authorized
+		@micropost = Micropost.find(params[:id])
+		@user = @micropost.user
+		if @user != current_user
+			flash[:error] = "You are not authorized to edit that Micropost"
+			redirect_to root_path
+		end
+	end
 end

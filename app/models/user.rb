@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :email, :name, :password
+  attr_accessible :email, :name, :password, :avatar
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" },
+							:default_url => "/images/:style/missing.png"
   
   validates :password, presence: true, if: "hashed_password.blank?"
   

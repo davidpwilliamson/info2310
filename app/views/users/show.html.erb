@@ -11,10 +11,17 @@
 </p>
 
 <p>
+  <b>Avatar:</b>
+  <%= image_tag @user.avatar.url(:medium) %>
+</p>
+
+<p>
 	<%= pluralize(@user.microposts.length, "Micropost") %>
 </p>
 
-<%= render @user.microposts %>
+<%= will_paginate @microposts %>
+<%= render @microposts %>
+<%= will_paginate @microposts %>
 
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
