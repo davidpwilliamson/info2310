@@ -1,6 +1,9 @@
-<p>
+<p id="micropost-<%= micropost.id %>">
   <span class='micropost_timestamp'>
      <%= micropost.created_at.strftime("%m/%d %l-%M") %>
    </span> 
    <%= micropost.content %>
+   <% if current_user == micropost.user %> 
+	<%= link_to 'Destroy', micropost, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+   <% end %>
 </p>

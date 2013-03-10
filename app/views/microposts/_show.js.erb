@@ -1,0 +1,12 @@
+// Get the HTML for a rendered MicroPost
+var html = '<%= j(render(:partial => "micropost", :object => @micropost))%>';
+
+// create a JQuery DOM element we can insert (and hide it so we can fade it in)
+var element = $(html).hide();
+
+// Add it to the user feed, and then fade it in
+$('#user_feed').prepend(element);
+element.fadeIn(1000);
+
+// Reset the post input to empty
+$('#new_micropost input[type="text"]').val('');

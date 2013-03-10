@@ -31,4 +31,8 @@ class User < ActiveRecord::Base
 	user = User.find_by_email(email)
 	if (user && user.hashed_password && user.hashed_password == user.encrypt(plain_text_password) ) then user else nil end
   end
+  
+  def feed(paginate_options={page: 1})
+	microposts.paginate(paginate_options)
+  end
 end
